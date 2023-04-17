@@ -1,0 +1,23 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+
+.container {
+  position: relative;
+  height: vw(320, 350);
+  width: 100%;
+  background-color: blue;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    height: vw(1024, 500);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    height: vw(1280, 350);
+  }
+}

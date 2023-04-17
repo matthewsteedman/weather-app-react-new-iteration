@@ -1,0 +1,40 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+.container {
+  width: 100%;
+  height: vw(320, 50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: vw(320, 30);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    height: vw(1024, 100);
+
+    h1 {
+      font-size: vw(1024, 50);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    height: vw(1280, 100);
+
+    h1 {
+      font-size: vw(1280, 50);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}

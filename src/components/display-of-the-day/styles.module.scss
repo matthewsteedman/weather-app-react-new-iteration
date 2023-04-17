@@ -1,0 +1,58 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+
+.card {
+  display: block;
+  margin-left: vw(320, 20);
+  width: vw(320, 280);
+  height: vw(320, 50);
+  background-color: #fff;
+  box-shadow: 0px vw(320, 4) vw(320, 4) rgba(0, 0, 0, 0.25);
+  .svgTemp {
+    display: flex;
+    align-items: center;
+  }
+  .descriptionContainer {
+    margin-top: vw(320, 20);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: vw(320, 20);
+  }
+  svg {
+    width: vw(320, 50);
+    height: vw(320, 50);
+  }
+  h2 {
+    font-size: vw(320, 20);
+    font-weight: 600;
+    span {
+      font-size: vw(320, 15);
+    }
+  }
+  p {
+    font-size: vw(320, 15);
+    font-weight: 300;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    margin-left: vw(1024, 380);
+    width: vw(1024, 280);
+    height: vw(1024, 280);
+    box-shadow: 0px vw(1024, 4) vw(1024, 4) rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media (min-width: 1280px) {
+  .card {
+    margin-left: vw(1280, 380);
+    width: vw(1280, 650);
+    height: vw(1280, 280);
+    box-shadow: 0px vw(1280, 4) vw(1280, 4) rgba(0, 0, 0, 0.25);
+  }
+}
