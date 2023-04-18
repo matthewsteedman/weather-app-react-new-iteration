@@ -1,0 +1,42 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+.title {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-weight: 600;
+  font-size: vw(320, 30);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(320, 10);
+  margin-left: vw(320, 20);
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    font-weight: 600;
+    font-size: vw(1024, 30);
+  }
+  .container {
+    margin-bottom: vw(1024, 30);
+    flex-direction: row;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-bottom: vw(1280, 30);
+    .title {
+      font-family: "Lato", sans-serif;
+      text-align: center;
+      font-weight: 600;
+      font-size: vw(1280, 50);
+    }
+  }
+}

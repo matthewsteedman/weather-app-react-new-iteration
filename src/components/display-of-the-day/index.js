@@ -4,18 +4,20 @@ import useWindowSize from "@/hooks/use-window-dimensions";
 import countryNameFromCode from "@/hooks/convert-country-code-to-country-name";
 const DisplayOfTheDay = ({ weatherData }) => {
   const { width } = useWindowSize();
-
   return (
     <div className={`bg-white rounded-md drop-shadow-md ${Styles.card}`}>
       <div className={Styles.svgTemp}>
-        {weatherData.weather && getIcon(weatherData?.weather[0]?.icon)}
-        <h2>
-          {Math.round(weatherData?.main?.temp)}
-          <span>&deg;C</span>
-        </h2>
+        <div className={Styles.temp}>
+          {weatherData?.weather &&
+            getIcon(weatherData?.weather && weatherData?.weather[0]?.icon)}
+          <h2>
+            {Math.round(weatherData?.main?.temp)}
+            <span>&deg;C</span>
+          </h2>
+        </div>
         <p>
           Location : {weatherData.name},{" "}
-          {countryNameFromCode(weatherData?.sys?.country)}
+          {weatherData?.sys && countryNameFromCode(weatherData?.sys?.country)}
         </p>
       </div>
       {width > 1023 && (

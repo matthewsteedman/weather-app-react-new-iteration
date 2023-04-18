@@ -5,22 +5,28 @@
 
 .card {
   display: block;
-  margin-left: vw(320, 20);
-  width: vw(320, 280);
+  min-width: vw(320, 280);
   height: vw(320, 50);
   background-color: #fff;
   box-shadow: 0px vw(320, 4) vw(320, 4) rgba(0, 0, 0, 0.25);
   .svgTemp {
     display: flex;
     align-items: center;
+    gap: vw(320, 20);
+    .temp {
+      display: flex;
+      align-items: center;
+    }
   }
   .descriptionContainer {
-    margin-top: vw(320, 20);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: vw(320, 20);
+    p {
+      font-weight: 400;
+    }
   }
   svg {
     width: vw(320, 50);
@@ -34,25 +40,67 @@
     }
   }
   p {
-    font-size: vw(320, 15);
+    font-size: vw(320, 10);
     font-weight: 300;
   }
 }
 
 @media (min-width: 1024px) {
   .card {
-    margin-left: vw(1024, 380);
-    width: vw(1024, 280);
-    height: vw(1024, 280);
+    min-width: vw(1024, 500);
+    height: vw(1024, 300);
     box-shadow: 0px vw(1024, 4) vw(1024, 4) rgba(0, 0, 0, 0.25);
+    padding: vw(1024, 20);
+    .svgTemp {
+      gap: vw(1024, 20);
+    }
+    .descriptionContainer {
+      gap: vw(1024, 30);
+    }
+    svg {
+      width: vw(1024, 80);
+      height: vw(1024, 80);
+    }
+    h2 {
+      font-size: vw(1024, 50);
+      font-weight: 600;
+      span {
+        font-size: vw(1024, 25);
+      }
+    }
+    p {
+      font-size: vw(1024, 20);
+      font-weight: 300;
+    }
   }
 }
 
 @media (min-width: 1280px) {
   .card {
-    margin-left: vw(1280, 380);
-    width: vw(1280, 650);
-    height: vw(1280, 280);
+    min-width: vw(1280, 650);
+    height: vw(1280, 250);
     box-shadow: 0px vw(1280, 4) vw(1280, 4) rgba(0, 0, 0, 0.25);
+    padding: vw(1280, 20);
+    .svgTemp {
+      gap: vw(1280, 20);
+    }
+    .descriptionContainer {
+      gap: vw(1280, 10);
+    }
+    svg {
+      width: vw(1280, 80);
+      height: vw(1280, 80);
+    }
+    h2 {
+      font-size: vw(1280, 50);
+      font-weight: 600;
+      span {
+        font-size: vw(1280, 25);
+      }
+    }
+    p {
+      font-size: vw(1280, 20);
+      font-weight: 300;
+    }
   }
 }

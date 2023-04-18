@@ -4,6 +4,10 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: vw(320, 350);
   width: 100%;
@@ -12,12 +16,17 @@
 
 @media (min-width: 1024px) {
   .container {
+    flex-direction: row;
     height: vw(1024, 500);
+    padding-left: vw(1024, 50);
+    gap: vw(1024, 20);
   }
 }
 
 @media (min-width: 1280px) {
   .container {
+    gap: vw(1280, 50);
     height: vw(1280, 350);
+    padding-left: vw(1280, 100);
   }
 }

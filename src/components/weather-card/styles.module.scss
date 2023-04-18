@@ -1,0 +1,77 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: vw(320, 15);
+  width: vw(320, 280);
+  min-height: vw(320, 150);
+  background-color: beige;
+  padding: vw(320, 20);
+  box-shadow: 0px vw(320, 4) vw(320, 4) rgba(0, 0, 0, 0.25);
+  h3 {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    font-weight: 600;
+    font-size: vw(320, 20);
+  }
+  svg {
+    width: vw(320, 50);
+    height: vw(320, 50);
+  }
+  p {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    font-weight: 300;
+    font-size: vw(320, 10);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: vw(1024, 15);
+    width: vw(1024, 280);
+    min-height: vw(1024, 150);
+    background-color: beige;
+    padding: vw(1024, 20);
+    box-shadow: 0px vw(1024, 4) vw(1024, 4) rgba(0, 0, 0, 0.25);
+    h3 {
+      font-size: vw(1024, 20);
+    }
+    svg {
+      width: vw(1024, 50);
+      height: vw(1024, 50);
+    }
+    p {
+      font-size: vw(1024, 10);
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    flex-direction: column;
+    gap: vw(1280, 15);
+    width: vw(1280, 280);
+    min-height: vw(1280, 150);
+    background-color: beige;
+    padding: vw(1280, 20);
+    box-shadow: 0px vw(1280, 4) vw(1280, 4) rgba(0, 0, 0, 0.25);
+    h3 {
+      font-size: vw(1280, 20);
+    }
+    svg {
+      width: vw(1280, 50);
+      height: vw(1280, 50);
+    }
+    p {
+      font-size: vw(1280, 10);
+    }
+  }
+}

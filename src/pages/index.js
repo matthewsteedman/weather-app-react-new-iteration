@@ -1,13 +1,21 @@
 import { useEffect } from "react";
 import useWeatherContext from "@/hooks/use-weather-context";
-import Image from "next/image";
 import Banner from "@/components/banner";
 import DisplayOfTheDay from "@/components/display-of-the-day";
 import Header from "@/components/header";
+import SearchBar from "@/components/search";
+import WeatherCard from "@/components/weather-card";
+import FiveDayWeatherHousing from "@/components/five-day-weather-housing";
 export default function Home() {
-  const { fetchWeatherData, getLocation, weatherData, coOrdinates } =
-    useWeatherContext();
-
+  const {
+    fetchCurrentWeatherData,
+    getLocation,
+    weatherData,
+    coOrdinates,
+    getFiveDayForecast,
+    fiveDayForecast,
+  } = useWeatherContext();
+  console.log("fiveDayForecast :", fiveDayForecast);
   // on initial load gets users Location co-ordinates
 
   useEffect(() => {
@@ -19,7 +27,8 @@ export default function Home() {
 
   useEffect(() => {
     if (coOrdinates.lat && coOrdinates.lon) {
-      fetchWeatherData();
+      fetchCurrentWeatherData();
+      getFiveDayForecast();
     }
   }, [coOrdinates]);
 
@@ -28,25 +37,35 @@ export default function Home() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      fetchWeatherData();
+      fetchCurrentWeatherData();
     }, 300000); // 5 minutes in milliseconds
     return () => {
       clearInterval(intervalId);
     };
   }, [coOrdinates]);
 
-  console.log("weatherData1 :", weatherData);
+  console.log("five day forecast :", fiveDayForecast);
+
   return (
     <div>
       <Header />
       <Banner>
+        <SearchBar />
         {weatherData ? (
           <DisplayOfTheDay weatherData={weatherData} />
         ) : (
           <p>Loading ....</p>
         )}
       </Banner>
-      <div></div>
+      <FiveDayWeatherHousing>
+        {fiveDayForecast.length > 0 ? (
+          fiveDayForecast.map((weatherData, index) => (
+            <WeatherCard key={index} weatherData={weatherData} />
+          ))
+        ) : (
+          <p>Loading.....</p>
+        )}
+      </FiveDayWeatherHousing>
     </div>
   );
 }
