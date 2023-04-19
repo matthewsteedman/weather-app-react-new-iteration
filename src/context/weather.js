@@ -1,5 +1,9 @@
 import { createContext, useState, useCallback } from "react";
 import axios from "axios";
+import Header from "@/components/header";
+import Banner from "@/components/banner";
+import DisplayOfTheDay from "@/components/display-of-the-day";
+import SearchBar from "@/components/search";
 const WeatherContext = createContext();
 function Provider({ children }) {
   const [weatherData, setWeatherData] = useState([]);
@@ -7,8 +11,7 @@ function Provider({ children }) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
   const countries = [
-    { name: "USA", code: "US" },
-    { name: "Canada", code: "CA" },
+    { name: "United States", code: "US" },
     { name: "Mexico", code: "MX" },
     { name: "United Kingdom", code: "GB" },
     { name: "France", code: "FR" },
@@ -49,6 +52,7 @@ function Provider({ children }) {
   const handleSelectCountry = async (country) => {
     const headers = { "User-Agent": "Weather app" };
     setSelectedCountry(country);
+    console.log("country :", country);
     try {
       const response = await axios.get(
         `https://nominatim.openstreetmap.org/search?country=${country}&format=json&limit=1`,
@@ -59,7 +63,7 @@ function Provider({ children }) {
       const longitude = result.lon;
       setCoOrdinates({ lat: latitude, lon: longitude });
     } catch (error) {
-      console.log(error);
+      console.log(error, "error");
     }
   };
 
@@ -71,6 +75,7 @@ function Provider({ children }) {
       setFiveDayForecast(filteredData);
     }
   };
+
   const valueToShare = {
     weatherData,
     fetchCurrentWeatherData,
@@ -85,6 +90,15 @@ function Provider({ children }) {
 
   return (
     <WeatherContext.Provider value={valueToShare}>
+      <Header />
+      <Banner>
+        <SearchBar />
+        {weatherData ? (
+          <DisplayOfTheDay weatherData={weatherData} />
+        ) : (
+          <p>Loading ....</p>
+        )}
+      </Banner>
       {children}
     </WeatherContext.Provider>
   );

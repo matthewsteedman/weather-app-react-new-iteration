@@ -1,0 +1,50 @@
+.overlay_nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  transition: left 0.5s ease-in-out;
+}
+
+.overlay_nav.open {
+  left: 0;
+}
+
+.overlay_nav ul {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  list-style-type: none;
+  text-align: center;
+}
+
+.overlay_nav li {
+  cursor: pointer;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.overlay_nav li:hover {
+  color: blue;
+}
+
+.overlay_nav a {
+  color: #fff;
+  font-size: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .overlay_nav {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .overlay_nav {
+    width: 25%;
+  }
+}

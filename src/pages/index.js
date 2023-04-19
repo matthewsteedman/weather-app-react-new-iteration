@@ -48,15 +48,6 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
-      <Banner>
-        <SearchBar />
-        {weatherData ? (
-          <DisplayOfTheDay weatherData={weatherData} />
-        ) : (
-          <p>Loading ....</p>
-        )}
-      </Banner>
       <FiveDayWeatherHousing>
         {fiveDayForecast.length > 0 ? (
           fiveDayForecast.map((weatherData, index) => (
