@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import Header from "@/components/header";
 import Banner from "@/components/banner";
@@ -10,6 +10,7 @@ function Provider({ children }) {
   const [coOrdinates, setCoOrdinates] = useState({ lat: null, lon: null });
   const [selectedCountry, setSelectedCountry] = useState("");
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
   const countries = [
     { name: "United States", code: "US" },
     { name: "Mexico", code: "MX" },
@@ -21,6 +22,7 @@ function Provider({ children }) {
     { name: "Japan", code: "JP" },
     { name: "China", code: "CN" },
   ];
+  // functions shared by all components using context
 
   const fetchCurrentWeatherData = async () => {
     if (coOrdinates.lat && coOrdinates.lon) {
@@ -75,6 +77,46 @@ function Provider({ children }) {
       setFiveDayForecast(filteredData);
     }
   };
+  const getHourlyForecast = async () => {
+    if (coOrdinates.lat && coOrdinates.lon) {
+      const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?lat=${coOrdinates.lat}&lon=${coOrdinates.lon}&appid=153aa4a7ff3373e1f1beae68b4fecc57&units=metric&exclude=daily,minutely,current,alerts`;
+      const response = await axios.get(API_ENDPOINT);
+      const filteredData = response.data.hourly.slice(0, 12);
+      setHourlyForecast(filteredData);
+    }
+  };
+
+  // # UseEffects used bto fetch data on page load
+
+  // on initial load gets users Location co-ordinates
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  // when location co-ordinates are received the second useEffect fires
+  // to get weather for users specific location
+
+  useEffect(() => {
+    if (coOrdinates.lat && coOrdinates.lon) {
+      fetchCurrentWeatherData();
+      getFiveDayForecast();
+      getHourlyForecast();
+    }
+  }, [coOrdinates]);
+
+  // the third useEffect fires every 5 minutes
+  // updating the current weather status
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchCurrentWeatherData();
+      getHourlyForecast();
+    }, 300000); // 5 minutes in milliseconds
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [coOrdinates]);
 
   const valueToShare = {
     weatherData,
@@ -86,8 +128,10 @@ function Provider({ children }) {
     countries,
     getFiveDayForecast,
     fiveDayForecast,
+    getHourlyForecast,
+    hourlyForecast,
+    setSelectedCountry,
   };
-
   return (
     <WeatherContext.Provider value={valueToShare}>
       <Header />

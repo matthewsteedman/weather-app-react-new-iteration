@@ -15,11 +15,7 @@ const Header = () => {
         <h1>Weather App</h1>
       </Link>
       <button onClick={toggleNav}>
-        {isOpen ? (
-          <MdClose />
-        ) : (
-          <MdOutlineSort isOpen={isOpen} setIsOpen={setIsOpen} />
-        )}
+        {isOpen ? <MdClose /> : <MdOutlineSort />}
       </button>
       <OverlayNavigationBar isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>

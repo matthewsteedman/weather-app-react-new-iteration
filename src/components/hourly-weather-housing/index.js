@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 
-const FiveDayWeatherHousing = ({ children, title }) => {
+const HourlyWeatherHousing = ({ children, title }) => {
   return (
     <>
       <h2 className={styles.title}>{title}</h2>
@@ -9,4 +9,4 @@ const FiveDayWeatherHousing = ({ children, title }) => {
   );
 };
 
-export default FiveDayWeatherHousing;
+export default HourlyWeatherHousing;

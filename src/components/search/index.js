@@ -5,9 +5,9 @@ const SearchBar = () => {
   const {
     getLocation,
     handleSelectCountry,
-    coOrdinates,
     selectedCountry,
     countries,
+    setSelectedCountry,
   } = useWeatherContext();
 
   return (
@@ -23,7 +23,13 @@ const SearchBar = () => {
           </option>
         ))}
       </select>
-      <button className={styles.live_location} onClick={getLocation}>
+      <button
+        className={styles.live_location}
+        onClick={() => {
+          getLocation();
+          setSelectedCountry("");
+        }}
+      >
         Use live location
       </button>
     </div>

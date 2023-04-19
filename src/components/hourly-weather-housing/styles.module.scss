@@ -7,6 +7,8 @@
   text-align: center;
   font-weight: 600;
   font-size: vw(320, 30);
+  margin-top: vw(320, 30);
+  margin-bottom: vw(320, 30);
 }
 .container {
   display: flex;
@@ -17,30 +19,31 @@
 
 @media (min-width: 1024px) {
   .title {
-    font-family: "Lato", sans-serif;
-    text-align: center;
-    font-weight: 600;
     font-size: vw(1024, 30);
+    margin-top: vw(1024, 30);
+    margin-bottom: vw(1024, 30);
   }
   .container {
     margin-bottom: vw(1024, 30);
+    margin-left: vw(1024, 27);
+    margin-right: vw(1024, 27);
     flex-direction: row;
     flex-wrap: wrap;
-    gap: vw(1024, 20);
-    margin-left: vw(1024, 70);
+    gap: vw(1024, 5);
   }
 }
 
 @media (min-width: 1280px) {
+  .container {
+    margin-bottom: vw(1280, 30);
+    margin-left: vw(1280, 27);
+    margin-right: vw(1280, 27);
+    gap: vw(1280, 5);
+  }
   .title {
     font-family: "Lato", sans-serif;
     text-align: center;
     font-weight: 600;
     font-size: vw(1280, 50);
-  }
-  .container {
-    margin-bottom: vw(1280, 30);
-    margin-left: vw(1280, 40);
-    gap: vw(1280, 20);
   }
 }

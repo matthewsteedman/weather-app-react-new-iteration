@@ -1,0 +1,58 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: vw(320, 7);
+  align-items: center;
+  padding: vw(320, 10);
+  width: vw(320, 280);
+  height: vw(320, 100);
+  background-color: beige;
+  p {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: vw(320, 15);
+  }
+  svg {
+    width: vw(320, 25);
+    height: vw(320, 25);
+  }
+}
+.active {
+  background-color: rgb(84, 84, 255);
+  color: #fff;
+}
+.icon_temp {
+  display: flex;
+  align-items: center;
+  padding: vw(320, 5);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: vw(1024, 10);
+    padding: vw(1024, 20);
+    width: vw(320, 100);
+    p {
+      font-size: vw(1024, 25);
+    }
+    svg {
+      width: vw(1024, 50);
+      height: vw(1024, 50);
+    }
+  }
+  .icon_temp {
+    display: flex;
+    align-items: center;
+    padding: vw(1024, 10);
+  }
+}
