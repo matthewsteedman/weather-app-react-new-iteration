@@ -14,7 +14,6 @@ const countryCodes = {
 };
 
 function countryNameFromCode(countryCode) {
-  console.log("country code :", countryCode);
   if (!countryCode) {
     console.error("Error: No country code provided");
     return null;

@@ -32,15 +32,18 @@
 }
 
 @media (min-width: 1280px) {
+  .container {
+    margin-bottom: vw(1280, 40);
+    margin-left: vw(1280, 40);
+    margin-top: vw(1280, 40);
+    gap: vw(1280, 20);
+    justify-content: center;
+  }
   .title {
     font-family: "Lato", sans-serif;
     text-align: center;
     font-weight: 600;
     font-size: vw(1280, 50);
-  }
-  .container {
-    margin-bottom: vw(1280, 30);
-    margin-left: vw(1280, 40);
-    gap: vw(1280, 20);
+    margin-top: vw(1280, 40);
   }
 }

@@ -7,7 +7,7 @@ const HourlyWeatherCard = ({ weatherData }) => {
   const hour = time.getHours();
   const format = hour == 0 ? 12 : hour;
   const ampm = hour >= 12 ? "pm" : "am";
-  console.log(currentTime === hour);
+
   return (
     <div
       className={`${styles.container} ${
@@ -20,9 +20,7 @@ const HourlyWeatherCard = ({ weatherData }) => {
       </p>
       <div className={styles.icon_temp}>
         {getIcon(weatherData.weather[0].icon)}
-        <p>
-          {Math.round(weatherData.temp)}/ {Math.round(weatherData.feels_like)}
-        </p>
+        <p>{Math.round(weatherData.temp)}&deg;C</p>
       </div>
       <p>{weatherData.weather[0].description}</p>
     </div>

@@ -5,7 +5,6 @@ import OverlayNavigationBar from "../overlay-nav";
 import Link from "next/link";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
   const toggleNav = () => {
     setIsOpen(!isOpen);
   };

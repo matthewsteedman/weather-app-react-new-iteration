@@ -9,6 +9,10 @@
 }
 body {
   font-family: "Lato", sans-serif;
+  background: linear-gradient(to bottom, #345995, rgba(52, 89, 149, 0));
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -11,7 +11,8 @@
   padding: vw(320, 10);
   width: vw(320, 280);
   height: vw(320, 100);
-  background-color: beige;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.4);
   p {
     font-family: "Lato", sans-serif;
     text-align: center;
@@ -54,5 +55,29 @@
     display: flex;
     align-items: center;
     padding: vw(1024, 10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: vw(1280, 10);
+    padding: vw(1280, 10);
+    width: vw(1280, 140);
+    p {
+      font-size: vw(1280, 15);
+    }
+    svg {
+      width: vw(1280, 25);
+      height: vw(1280, 25);
+    }
+  }
+  .icon_temp {
+    display: flex;
+    align-items: center;
+    padding: vw(1280, 10);
   }
 }

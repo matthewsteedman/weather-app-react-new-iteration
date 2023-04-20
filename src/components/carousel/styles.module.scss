@@ -1,0 +1,65 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+
+.forwardButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: vw(320, 20);
+  height: vw(320, 30);
+  line-height: 1;
+  text-align: center;
+  width: vw(320, 30);
+  background-color: blue;
+  margin-left: 2%;
+}
+.backwardBtnProps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: vw(320, 20);
+  height: vw(320, 30);
+  line-height: 1;
+  text-align: center;
+  width: vw(320, 30);
+  background-color: blue;
+  margin-right: 2%;
+}
+
+@media (min-width: 1024px) {
+  .forwardButton {
+    font-size: vw(1024, 20);
+    height: vw(1024, 30);
+    width: vw(1024, 30);
+  }
+  .backwardBtnProps {
+    font-size: vw(1024, 20);
+    height: vw(1024, 30);
+    width: vw(1024, 30);
+  }
+}
+
+@media (min-width: 1280px) {
+  .forwardButton {
+    font-size: vw(1280, 20);
+    height: vw(1280, 30);
+    width: vw(1280, 30);
+  }
+  .backwardBtnProps {
+    font-size: vw(1280, 20);
+    height: vw(1280, 30);
+    width: vw(1280, 30);
+  }
+}
