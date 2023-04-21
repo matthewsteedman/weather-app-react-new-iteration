@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import Banner from "@/components/banner";
 import DisplayOfTheDay from "@/components/display-of-the-day";
 import SearchBar from "@/components/search";
+import Loader from "@/components/loader";
 const WeatherContext = createContext();
 function Provider({ children }) {
   const [weatherData, setWeatherData] = useState([]);
@@ -161,10 +162,10 @@ function Provider({ children }) {
       <Header />
       <Banner>
         <SearchBar />
-        {weatherData ? (
+        {Object.keys(weatherData).length > 0 ? (
           <DisplayOfTheDay weatherData={weatherData} />
         ) : (
-          <p>Loading ....</p>
+          <Loader />
         )}
       </Banner>
       {children}

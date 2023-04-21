@@ -13,11 +13,13 @@
   width: 100%;
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.4);
+  padding-top: vw(320, 50);
 }
 
 @media (min-width: 1024px) {
   .container {
     flex-direction: row;
+    padding-top: vw(1024, 100);
     height: vw(1024, 500);
     gap: vw(1024, 20);
   }
@@ -25,7 +27,8 @@
 
 @media (min-width: 1280px) {
   .container {
+    padding-top: vw(1280, 100);
     gap: vw(1280, 50);
-    height: vw(1280, 350);
+    height: vw(1280, 500);
   }
 }

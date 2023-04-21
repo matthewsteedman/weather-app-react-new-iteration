@@ -14,8 +14,6 @@ const OverlayNavigationBar = ({ isOpen, setIsOpen }) => {
             Hourly
           </Link>
         </li>
-        <li>Link 2</li>
-        <li>Link 3</li>
       </ul>
     </div>
   );

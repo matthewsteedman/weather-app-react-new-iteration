@@ -9,6 +9,9 @@
   align-items: center;
   justify-content: space-between;
   padding: vw(320, 20);
+  background-color: white;
+  position: fixed;
+  z-index: 999;
   h1 {
     font-size: vw(320, 20);
     font-weight: 600;
@@ -41,13 +44,13 @@
     height: vw(1280, 100);
     padding: vw(1280, 50);
     h1 {
-      font-size: vw(1280, 50);
+      font-size: vw(1280, 30);
       font-weight: 600;
       text-transform: uppercase;
     }
     svg {
-      width: vw(1280, 40);
-      height: vw(1280, 40);
+      width: vw(1280, 35);
+      height: vw(1280, 35);
     }
   }
 }
