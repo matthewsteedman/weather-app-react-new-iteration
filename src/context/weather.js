@@ -23,7 +23,6 @@ function Provider({ children }) {
     { name: "China", code: "CN" },
   ];
 
-  // console.log(weatherData, "weatherData");
   // functions shared by all components using context
 
   const fetchCurrentWeatherData = async () => {
@@ -31,26 +30,6 @@ function Provider({ children }) {
       const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/weather?lat=${coOrdinates.lat}&lon=${coOrdinates.lon}&appid=153aa4a7ff3373e1f1beae68b4fecc57&units=metric`;
       const response = await axios.get(API_ENDPOINT);
       setWeatherData(response.data);
-      if (weatherData?.weather?.length > 0) {
-        console.log("weatherData?.weather[0]?.main :", weatherData);
-        let gradient;
-        switch (weatherData?.weather[0]?.main) {
-          case "Clear":
-            gradient = "linear-gradient(to bottom, #1a8cff, #66ccff)";
-            break;
-          case "Clouds":
-            gradient = "linear-gradient(to bottom, #b3b3b3, #e6e6e6)";
-            break;
-          case "Rain":
-            gradient = "linear-gradient(to bottom, #003366, #6699cc)";
-            break;
-          // Add additional cases for other weather conditions
-          default:
-            gradient = "linear-gradient(to bottom, #f2f2f2, #ffffff)";
-        }
-        console.log(gradient, "gradient");
-        document.body.style.background = gradient;
-      }
     }
   };
 
@@ -107,12 +86,37 @@ function Provider({ children }) {
     }
   };
 
+  const handleGradientChange = (weatherData) => {
+    if (weatherData?.weather?.length > 0) {
+      let gradient;
+      switch (weatherData?.weather[0]?.main) {
+        case "Clear":
+          gradient = "linear-gradient(to bottom, #1a8cff, #66ccff)";
+          break;
+        case "Clouds":
+          gradient = "linear-gradient(to bottom, #b3b3b3, #e6e6e6)";
+          break;
+        case "Rain":
+          gradient = "linear-gradient(to bottom, #003366, #6699cc)";
+          break;
+        // Add additional cases for other weather conditions
+        default:
+          gradient = "linear-gradient(to bottom, #f2f2f2, #ffffff)";
+      }
+      document.body.style.background = gradient;
+    }
+  };
+
   // # UseEffects used bto fetch data on page load
   // on initial load gets users Location co-ordinates
 
   useEffect(() => {
     getLocation();
   }, []);
+
+  useEffect(() => {
+    handleGradientChange(weatherData);
+  }, [Object.keys(weatherData)]);
 
   // when location co-ordinates are received the second useEffect fires
   // to get weather for users specific location

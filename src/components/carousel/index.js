@@ -15,7 +15,7 @@ const Carousel = ({ children }) => {
       autoplayDelay={3000}
       responsiveProps={[
         {
-          itemsToShow: 6,
+          itemsToShow: 7,
           itemsToScroll: 1,
           minWidth: 800,
         },

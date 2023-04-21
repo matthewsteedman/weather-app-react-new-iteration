@@ -9,7 +9,7 @@
   gap: vw(320, 7);
   align-items: center;
   padding: vw(320, 10);
-  width: vw(320, 280);
+  width: vw(320, 230);
   height: vw(320, 100);
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.4);
@@ -30,6 +30,7 @@
 }
 .icon_temp {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: vw(320, 5);
 }
@@ -42,7 +43,7 @@
     height: 100%;
     gap: vw(1024, 10);
     padding: vw(1024, 20);
-    width: vw(320, 100);
+    width: vw(1024, 125);
     p {
       font-size: vw(1024, 25);
     }
@@ -52,8 +53,7 @@
     }
   }
   .icon_temp {
-    display: flex;
-    align-items: center;
+    flex-direction: row;
     padding: vw(1024, 10);
   }
 }

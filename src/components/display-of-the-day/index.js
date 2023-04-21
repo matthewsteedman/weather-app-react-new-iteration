@@ -16,16 +16,30 @@ const DisplayOfTheDay = ({ weatherData }) => {
             <span>&deg;C</span>
           </h2>
         </div>
-        <p>
-          Location : {weatherData.name},{" "}
-          {weatherData?.sys && countryNameFromCode(weatherData?.sys?.country)}
-        </p>
+        {weatherData.weather && width < 1024 ? (
+          <>
+            <p>{weatherData.weather[0].description}</p>
+            <p>
+              {weatherData.name},{" "}
+              {weatherData?.sys &&
+                countryNameFromCode(weatherData?.sys?.country)}
+            </p>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       {width > 1023 && (
         <div className={Styles.descriptionContainer}>
           {weatherData.weather && <p>{weatherData.weather[0].description}</p>}
-          <p>Feels like : {Math.round(weatherData?.main?.temp)}&deg;C</p>
-          <p>Location : {weatherData.name}</p>
+          <p>
+            <strong>Feels like :</strong> {Math.round(weatherData?.main?.temp)}
+            &deg;C
+          </p>
+          <p>
+            <strong>Location :</strong> {weatherData.name},{" "}
+            {weatherData?.sys && countryNameFromCode(weatherData?.sys?.country)}
+          </p>
         </div>
       )}
     </div>

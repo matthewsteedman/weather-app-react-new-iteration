@@ -29,26 +29,27 @@
   border-radius: vw(320, 4);
   cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   /* Styles for devices with a maximum width of 768px */
   .country_dropdown {
-    margin-bottom: vw(1024, 20);
+    // margin-bottom: vw(1024, 20);
     flex-direction: row;
     justify-content: center;
     select {
-      font-size: vw(1024, 14);
-      padding: vw(1024, 6);
+      font-size: vw(1024, 20);
+      padding: vw(1024, 10);
       border-radius: vw(1024, 4);
       margin-right: vw(1024, 10);
     }
     p {
-      font-size: vw(1024, 12);
+      font-size: vw(1024, 20);
     }
   }
   .live_location {
     margin-top: 0;
-    padding: vw(1024, 6);
-    font-size: vw(1024, 14);
+    padding: vw(1024, 10);
+    font-size: vw(1024, 20);
+    border-radius: vw(1024, 4);
   }
 }
 
@@ -63,11 +64,12 @@
       margin-right: vw(1280, 10);
     }
     p {
-      font-size: vw(1280, 16);
+      font-size: vw(1280, 20);
     }
   }
   .live_location {
     padding: vw(1280, 20);
     font-size: vw(1280, 20);
+    border-radius: vw(1280, 4);
   }
 }
