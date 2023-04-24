@@ -14,12 +14,13 @@
   row-gap: vw(320, 10);
   margin-left: vw(320, 20);
 }
-
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: vw(320, 10);
+}
 @media (min-width: 1024px) {
   .title {
-    font-family: "Lato", sans-serif;
-    text-align: center;
-    font-weight: 600;
     font-size: vw(1024, 30);
   }
   .container {
@@ -28,6 +29,9 @@
     flex-wrap: wrap;
     gap: vw(1024, 20);
     margin-left: vw(1024, 70);
+  }
+  .buttonContainer {
+    margin-bottom: vw(1024, 10);
   }
 }
 
@@ -44,6 +48,10 @@
     text-align: center;
     font-weight: 600;
     font-size: vw(1280, 50);
+    margin-top: vw(1280, 40);
+  }
+  .buttonContainer {
+    margin-bottom: vw(1280, 40);
     margin-top: vw(1280, 40);
   }
 }

@@ -89,22 +89,25 @@ function Provider({ children }) {
 
   const handleGradientChange = (weatherData) => {
     if (weatherData?.weather?.length > 0) {
-      let gradient;
+      let imageUrl;
       switch (weatherData?.weather[0]?.main) {
         case "Clear":
-          gradient = "linear-gradient(to bottom, #1a8cff, #66ccff)";
+          imageUrl = "/sky.jpg";
           break;
         case "Clouds":
-          gradient = "linear-gradient(to bottom, #b3b3b3, #e6e6e6)";
+          imageUrl = "/cloudy-day.jpg";
           break;
         case "Rain":
-          gradient = "linear-gradient(to bottom, #003366, #6699cc)";
+          imageUrl = "/rainy-day.jpg";
+          break;
+        case "Mist":
+          imageUrl = "/mist-day.jpg";
           break;
         // Add additional cases for other weather conditions
         default:
-          gradient = "linear-gradient(to bottom, #f2f2f2, #ffffff)";
+          imageUrl = "/sky.jpg";
       }
-      document.body.style.background = gradient;
+      document.body.style.backgroundImage = `url(${imageUrl})`;
     }
   };
 

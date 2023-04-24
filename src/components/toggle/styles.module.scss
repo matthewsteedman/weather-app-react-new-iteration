@@ -1,0 +1,114 @@
+@function vw($screenWidth, $pixelValue) {
+  $result: ($pixelValue/$screenWidth) * 100vw;
+  @return $result;
+}
+.toggle_button {
+  backdrop-filter: blur(2px);
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: vw(320, 20);
+  cursor: pointer;
+  height: vw(320, 50);
+  padding: 0 vw(320, 10);
+  position: relative;
+  width: vw(320, 280);
+}
+
+.slider {
+  background-color: #fff;
+  border-radius: 50%;
+  bottom: 0;
+  box-shadow: 0 vw(320, 2) vw(320, 5) rgba(0, 0, 0, 0.2);
+  height: vw(320, 50);
+  left: vw(320, 2);
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  width: vw(320, 50);
+}
+
+.text {
+  color: black;
+  font-size: vw(320, 20);
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.on .slider {
+  left: vw(320, 230);
+}
+
+.off .slider {
+  right: vw(320, 230);
+}
+
+@media (min-width: 1024px) {
+  .toggle_button {
+    border-radius: vw(1024, 20);
+    cursor: pointer;
+    height: vw(1024, 20);
+    padding: 0 vw(1024, 10);
+    position: relative;
+    width: vw(1024, 80);
+  }
+
+  .slider {
+    border-radius: 50%;
+    bottom: 0;
+    box-shadow: 0 vw(1024, 2) vw(1024, 5) rgba(0, 0, 0, 0.2);
+    height: vw(1024, 16);
+    left: vw(1024, 2);
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: vw(1024, 16);
+  }
+
+  .text {
+    font-size: vw(1024, 12);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+  }
+
+  .on .slider {
+    left: vw(1024, 10);
+  }
+
+  .off .slider {
+    right: vw(1024, 10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .toggle_button {
+    border-radius: vw(1280, 20);
+    height: vw(1280, 50);
+    padding: 0 vw(1280, 20);
+    width: vw(1280, 300);
+  }
+
+  .slider {
+    border-radius: 50%;
+    bottom: 0;
+    box-shadow: 0 vw(1280, 2) vw(1280, 5) rgba(0, 0, 0, 0.2);
+    height: vw(1280, 50);
+    left: vw(1280, 2);
+    width: vw(1280, 50);
+  }
+
+  .text {
+    left: vw(1280, 130);
+    font-size: vw(1280, 20);
+  }
+
+  .on .slider {
+    left: vw(1280, 260);
+  }
+
+  .off .slider {
+    right: vw(1280, 280);
+  }
+}
