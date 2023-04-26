@@ -1,10 +1,6 @@
-import { createContext, useState, useCallback, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import Header from "@/components/header";
-import Banner from "@/components/banner";
-import DisplayOfTheDay from "@/components/display-of-the-day";
-import SearchBar from "@/components/search";
-import Loader from "@/components/loader";
+import Layout from "@/containers/layout";
 import { intToDay } from "@/hooks/use-days";
 const WeatherContext = createContext();
 function Provider({ children }) {
@@ -193,15 +189,7 @@ function Provider({ children }) {
   };
   return (
     <WeatherContext.Provider value={valueToShare}>
-      <Header />
-      <Banner>
-        <SearchBar />
-        {Object.keys(weatherData).length > 0 ? (
-          <DisplayOfTheDay weatherData={weatherData} />
-        ) : (
-          <Loader />
-        )}
-      </Banner>
+      <Layout />
       {children}
     </WeatherContext.Provider>
   );
