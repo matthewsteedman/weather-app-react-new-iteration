@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import { intToDay } from "@/hooks/use-days";
 import { getIcon } from "@/hooks/use-icons";
 const WeatherCard = ({ weatherData }) => {
-  const date = new Date(weatherData.dt * 1000).getDay();
+  const date = new Date(weatherData.EpochDate * 1000).getDay();
   const day = intToDay(date);
   return (
     <div className={styles.container}>

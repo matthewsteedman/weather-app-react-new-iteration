@@ -12,6 +12,7 @@ function Provider({ children }) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [geolocation, setGeolocation] = useState("");
   const countries = [
     { name: "United States", code: "US" },
     { name: "Mexico", code: "MX" },
@@ -26,12 +27,16 @@ function Provider({ children }) {
 
   // functions shared by all components using context
 
-  const fetchCurrentWeatherData = async () => {
-    if (coOrdinates.lat && coOrdinates.lon) {
-      const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/weather?lat=${coOrdinates.lat}&lon=${coOrdinates.lon}&appid=153aa4a7ff3373e1f1beae68b4fecc57&units=metric`;
-      const response = await axios.get(API_ENDPOINT);
-      setWeatherData(response.data);
-    }
+  // needed for acu weather to get location key
+  const GetLocationKey = async () => {
+    const API_ENDPOINT = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=FMXwjlEEWF915HX2VtZLtPBPFOE8U2lN&q=${-33.9297043}%2C%20${18.4435522}`;
+    const response = await axios.get(API_ENDPOINT);
+    setGeolocation(response.data);
+  };
+  const GetCurrentWeatherForecast = async () => {
+    const API_ENDPOINT = `http://dataservice.accuweather.com/currentconditions/v1/${geolocation.Key}?apikey=FMXwjlEEWF915HX2VtZLtPBPFOE8U2lN`;
+    const response = await axios.get(API_ENDPOINT);
+    setWeatherData(response.data[0]);
   };
 
   const getLocation = () => {
@@ -49,6 +54,10 @@ function Provider({ children }) {
           );
         }
         console.log(error);
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 10000,
       }
     );
   };
@@ -71,13 +80,16 @@ function Provider({ children }) {
   };
 
   const getFiveDayForecast = async () => {
-    if (coOrdinates.lat && coOrdinates.lon) {
-      const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?lat=${coOrdinates.lat}&lon=${coOrdinates.lon}&appid=153aa4a7ff3373e1f1beae68b4fecc57&units=metric&exclude=hourly`;
+    if (coOrdinates.lat && coOrdinates.lon && geolocation.Key) {
+      const API_ENDPOINT = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${geolocation.Key}?apikey=FMXwjlEEWF915HX2VtZLtPBPFOE8U2lN`;
       const response = await axios.get(API_ENDPOINT);
-      const filteredData = response.data.daily.slice(1, 6);
+      console.log(response);
+      const filteredData = response.data.DailyForecasts;
       setFiveDayForecast(filteredData);
     }
   };
+
+  console.log("fiveDayForecast :", fiveDayForecast);
   const getHourlyForecast = async () => {
     if (coOrdinates.lat && coOrdinates.lon) {
       const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?lat=${coOrdinates.lat}&lon=${coOrdinates.lon}&appid=153aa4a7ff3373e1f1beae68b4fecc57&units=metric&exclude=daily,minutely,current,alerts`;
@@ -127,18 +139,24 @@ function Provider({ children }) {
 
   useEffect(() => {
     if (coOrdinates.lat && coOrdinates.lon) {
-      fetchCurrentWeatherData();
-      getFiveDayForecast();
+      GetLocationKey();
       getHourlyForecast();
     }
   }, [coOrdinates]);
+
+  useEffect(() => {
+    if (Object.keys(geolocation).length > 0) {
+      GetCurrentWeatherForecast();
+      // getFiveDayForecast();
+    }
+  }, [geolocation]);
 
   // the third useEffect fires every 5 minutes
   // updating the current weather status
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      fetchCurrentWeatherData();
+      GetCurrentWeatherForecast();
       getHourlyForecast();
     }, 300000); // 5 minutes in milliseconds
     return () => {
@@ -148,7 +166,7 @@ function Provider({ children }) {
 
   const valueToShare = {
     weatherData,
-    fetchCurrentWeatherData,
+    GetCurrentWeatherForecast,
     getLocation,
     coOrdinates,
     selectedCountry,
@@ -159,17 +177,14 @@ function Provider({ children }) {
     getHourlyForecast,
     hourlyForecast,
     setSelectedCountry,
+    geolocation,
   };
   return (
     <WeatherContext.Provider value={valueToShare}>
       <Header />
       <Banner>
         <SearchBar />
-        {Object.keys(weatherData).length > 0 ? (
-          <DisplayOfTheDay weatherData={weatherData} />
-        ) : (
-          <Loader />
-        )}
+        {Object.keys(weatherData).length > 0 ? <DisplayOfTheDay /> : <Loader />}
       </Banner>
       {children}
     </WeatherContext.Provider>

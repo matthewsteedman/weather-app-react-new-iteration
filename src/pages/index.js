@@ -21,11 +21,11 @@ export default function Home() {
     const date = new Date(item.dt * 1000).getDay();
     return intToDay(date);
   });
-  console.log("fiveDayForecast :", fiveDayForecast);
   const text = isToggle ? "Chart" : "Cards";
   function HandleToggle() {
     setIsToggle(!isToggle);
   }
+  console.log(fiveDayForecast, "fiveDayForecast");
   return (
     <div>
       <FiveDayWeatherHousing

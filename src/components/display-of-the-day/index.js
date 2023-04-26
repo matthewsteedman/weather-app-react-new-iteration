@@ -2,27 +2,26 @@ import Styles from "./styles.module.scss";
 import { getIcon } from "@/hooks/use-icons";
 import useWindowSize from "@/hooks/use-window-dimensions";
 import countryNameFromCode from "@/hooks/convert-country-code-to-country-name";
-const DisplayOfTheDay = ({ weatherData }) => {
+import useWeatherContext from "@/hooks/use-weather-context";
+const DisplayOfTheDay = () => {
   const { width } = useWindowSize();
-
+  const { weatherData, geolocation } = useWeatherContext();
   return (
     <div className={`rounded-md drop-shadow-md ${Styles.card}`}>
       <div className={Styles.svgTemp}>
         <div className={Styles.temp}>
-          {weatherData?.weather &&
-            getIcon(weatherData?.weather && weatherData?.weather[0]?.icon)}
+          {weatherData && getIcon(weatherData?.WeatherIcon)}
           <h2>
-            {Math.round(weatherData?.main?.temp)}
-            <span>&deg;C</span>
+            {Math.round(weatherData?.Temperature?.Metric.UnitType)}
+            <span>&deg;{weatherData?.Temperature?.Metric.Unit}</span>
           </h2>
         </div>
-        {weatherData.weather && width < 1024 ? (
+        {weatherData && width < 1024 ? (
           <>
-            <p>{weatherData.weather[0].description}</p>
+            <p>{weatherData.WeatherText}</p>
             <p>
-              {weatherData.name},{" "}
-              {weatherData?.sys &&
-                countryNameFromCode(weatherData?.sys?.country)}
+              {geolocation.LocalizedName},
+              {geolocation?.ParentCity?.LocalizedName}
             </p>
           </>
         ) : (
@@ -31,14 +30,15 @@ const DisplayOfTheDay = ({ weatherData }) => {
       </div>
       {width > 1023 && (
         <div className={Styles.descriptionContainer}>
-          {weatherData.weather && <p>{weatherData.weather[0].description}</p>}
+          {weatherData && <p>{weatherData.WeatherText}</p>}
           <p>
-            <strong>Feels like :</strong> {Math.round(weatherData?.main?.temp)}
+            <strong>Feels like :</strong>{" "}
+            {Math.round(weatherData?.Temperature?.Metric.UnitType)}
             &deg;C
           </p>
           <p>
-            <strong>Location :</strong> {weatherData.name},{" "}
-            {weatherData?.sys && countryNameFromCode(weatherData?.sys?.country)}
+            <strong>Location :</strong> {geolocation.LocalizedName},{" "}
+            {geolocation?.ParentCity?.LocalizedName}
           </p>
         </div>
       )}
