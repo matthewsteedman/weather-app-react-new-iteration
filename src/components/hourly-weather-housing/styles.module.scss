@@ -2,13 +2,17 @@
   $result: ($pixelValue/$screenWidth) * 100vw;
   @return $result;
 }
+.containmentHousing {
+  background-color: rgba(79, 202, 233, 0.8);
+  padding-bottom: vw(320, 40);
+  padding-top: vw(320, 40);
+}
 .title {
   font-family: "Lato", sans-serif;
   text-align: center;
   font-weight: 600;
   font-size: vw(320, 30);
-  margin-top: vw(320, 30);
-  margin-bottom: vw(320, 30);
+  color: rgb(10, 58, 77);
 }
 .container {
   display: flex;
@@ -17,13 +21,14 @@
 }
 
 @media (min-width: 1024px) {
+  .containmentHousing {
+    padding-bottom: vw(1024, 40);
+    padding-top: vw(1024, 40);
+  }
   .title {
     font-size: vw(1024, 30);
-    margin-top: vw(1024, 30);
-    margin-bottom: vw(1024, 30);
   }
   .container {
-    margin-bottom: vw(1024, 30);
     margin-left: vw(1024, 10);
     margin-right: vw(1024, 10);
     flex-direction: row;
@@ -33,8 +38,11 @@
 }
 
 @media (min-width: 1280px) {
+  .containmentHousing {
+    padding-bottom: vw(1280, 40);
+    padding-top: vw(1280, 40);
+  }
   .container {
-    margin-bottom: vw(1280, 100);
     margin-left: vw(1280, 27);
     margin-right: vw(1280, 27);
     gap: vw(1280, 5);

@@ -139,9 +139,9 @@ function Provider({ children }) {
     getLocation();
   }, []);
 
-  useEffect(() => {
-    handleGradientChange(weatherData);
-  }, [Object.keys(weatherData)]);
+  // useEffect(() => {
+  //   handleGradientChange(weatherData);
+  // }, [Object.keys(weatherData)]);
 
   // when location co-ordinates are received the second useEffect fires
   // to get weather for users specific location
