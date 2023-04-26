@@ -81,7 +81,7 @@ function Provider({ children }) {
 
   const getFiveDayForecast = async () => {
     if (coOrdinates.lat && coOrdinates.lon && geolocation.Key) {
-      const API_ENDPOINT = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${geolocation.Key}?apikey=FMXwjlEEWF915HX2VtZLtPBPFOE8U2lN`;
+      const API_ENDPOINT = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${geolocation.Key}?apikey=FMXwjlEEWF915HX2VtZLtPBPFOE8U2lN&metric=true`;
       const response = await axios.get(API_ENDPOINT);
       console.log(response);
       const filteredData = response.data.DailyForecasts;
@@ -147,7 +147,7 @@ function Provider({ children }) {
   useEffect(() => {
     if (Object.keys(geolocation).length > 0) {
       GetCurrentWeatherForecast();
-      // getFiveDayForecast();
+      getFiveDayForecast();
     }
   }, [geolocation]);
 
@@ -156,8 +156,11 @@ function Provider({ children }) {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      GetCurrentWeatherForecast();
-      getHourlyForecast();
+      GetLocationKey();
+      if (Object.keys(geolocation).length > 0) {
+        GetCurrentWeatherForecast();
+        getHourlyForecast();
+      }
     }, 300000); // 5 minutes in milliseconds
     return () => {
       clearInterval(intervalId);

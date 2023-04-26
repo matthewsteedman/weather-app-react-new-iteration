@@ -7,11 +7,12 @@ const WeatherCard = ({ weatherData }) => {
   return (
     <div className={styles.container}>
       <h3>{day}</h3>
-      {getIcon(weatherData.weather[0].icon)}
-      <p>Max: {Math.round(weatherData.temp.max)}&deg;C</p>
-      <p>Min: {Math.round(weatherData.temp.min)}&deg;C</p>
-      <p>Wind: {Math.round(weatherData.wind_speed)}kmh</p>
-      <p>Humidity: {Math.round(weatherData.humidity)}%</p>
+      {getIcon(weatherData.Day.Icon)}
+      <p>{weatherData.Day.IconPhrase}</p>
+      <p>Max: {Math.round(weatherData.Temperature.Maximum.Value)}&deg;C</p>
+      <p>Min: {Math.round(weatherData.Temperature.Minimum.Value)}&deg;C</p>
+      {/* <p>Wind: {Math.round(weatherData.wind_speed)}kmh</p>
+      <p>Humidity: {Math.round(weatherData.humidity)}%</p> */}
     </div>
   );
 };
