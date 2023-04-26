@@ -50,11 +50,14 @@
   .card {
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: vw(1024, 205);
+    right: vw(1024, 40);
     gap: vw(1024, 10);
-    min-width: vw(1024, 250);
-    height: vw(1024, 300);
+    min-width: vw(1024, 20);
+    height: vw(1024, 180);
     box-shadow: 0px vw(1024, 4) vw(1024, 4) rgba(0, 0, 0, 0.25);
-    padding: vw(1024, 20);
+    padding: vw(1024, 10);
     .svgTemp {
       gap: vw(1024, 20);
     }
@@ -63,18 +66,18 @@
       align-items: normal;
     }
     svg {
-      width: vw(1024, 80);
-      height: vw(1024, 80);
+      width: vw(1024, 50);
+      height: vw(1024, 50);
     }
     h2 {
-      font-size: vw(1024, 50);
+      font-size: vw(1024, 20);
       font-weight: 600;
       span {
-        font-size: vw(1024, 25);
+        font-size: vw(1024, 10);
       }
     }
     p {
-      font-size: vw(1024, 20);
+      font-size: vw(1024, 12);
       font-weight: 300;
     }
   }
@@ -82,11 +85,14 @@
 
 @media (min-width: 1280px) {
   .card {
-    gap: vw(1280, 50);
+    gap: vw(1280, 20);
     min-width: vw(1280, 250);
+    max-width: vw(1280, 280);
     height: vw(1280, 250);
     box-shadow: 0px vw(1280, 4) vw(1280, 4) rgba(0, 0, 0, 0.25);
     padding: vw(1280, 20);
+    right: vw(1280, 40);
+    top: vw(1280, 205);
     .svgTemp {
       gap: vw(1280, 20);
     }

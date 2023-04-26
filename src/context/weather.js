@@ -5,6 +5,7 @@ import Banner from "@/components/banner";
 import DisplayOfTheDay from "@/components/display-of-the-day";
 import SearchBar from "@/components/search";
 import Loader from "@/components/loader";
+import { intToDay } from "@/hooks/use-days";
 const WeatherContext = createContext();
 function Provider({ children }) {
   const [weatherData, setWeatherData] = useState([]);
@@ -12,6 +13,7 @@ function Provider({ children }) {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [isToggle, setIsToggle] = useState(false);
   const countries = [
     { name: "United States", code: "US" },
     { name: "Mexico", code: "MX" },
@@ -92,7 +94,7 @@ function Provider({ children }) {
       let imageUrl;
       switch (weatherData?.weather[0]?.main) {
         case "Clear":
-          imageUrl = "/sky.jpg";
+          imageUrl = "/clear-sky.webp";
           break;
         case "Clouds":
           imageUrl = "/cloudy-day.jpg";
@@ -105,15 +107,38 @@ function Provider({ children }) {
           break;
         // Add additional cases for other weather conditions
         default:
-          imageUrl = "/sky.jpg";
+          imageUrl = "/clear-sky.webp";
       }
       document.body.style.backgroundImage = `url(${imageUrl})`;
     }
   };
+  // handles the switch to change between cards or charts
+  function HandleToggle() {
+    setIsToggle(!isToggle);
+  }
+  // handles change in text for 5 day forecast
+  const text = isToggle ? "Chart" : "Cards";
+
+  // gets Max Temperature for 5 day forecast
+  const getMaxTemperatureData = () => {
+    const data = fiveDayForecast.map((item) => item.temp.max);
+    return data;
+  };
+
+  // gets minimum temperature for five day forecast
+  const getMinTemperature = () => {
+    const data = fiveDayForecast.map((item) => item.temp.min);
+    return data;
+  };
+
+  // handles the date and converts to a day of the week
+  const days = fiveDayForecast.map((item) => {
+    const date = new Date(item.dt * 1000).getDay();
+    return intToDay(date);
+  });
 
   // # UseEffects used bto fetch data on page load
   // on initial load gets users Location co-ordinates
-
   useEffect(() => {
     getLocation();
   }, []);
@@ -159,6 +184,12 @@ function Provider({ children }) {
     getHourlyForecast,
     hourlyForecast,
     setSelectedCountry,
+    HandleToggle,
+    isToggle,
+    getMaxTemperatureData,
+    getMinTemperature,
+    days,
+    text,
   };
   return (
     <WeatherContext.Provider value={valueToShare}>
